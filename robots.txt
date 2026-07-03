@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://Max179.github.io/site-20260703-caffeine-half-life-calculator/sitemap.xml

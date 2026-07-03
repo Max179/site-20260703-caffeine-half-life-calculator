@@ -1,0 +1,6 @@
+{
+  "gaId": "YOUR_GA_ID",
+  "adsenseId": "YOUR_ADSENSE_ID",
+  "adPositions": ["header", "incontent", "sidebar"],
+  "siteUrl": "https://Max179.github.io"
+}

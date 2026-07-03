@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caffeine Half-Life Calculator - When Can You Sleep After Coffee?</title>
+  <meta name="description" content="Free caffeine half-life calculator. See when caffeine from your last coffee, tea, or energy drink drops below sleep-safe levels so you can sleep soundly.">
+  <meta name="keywords" content="caffeine half life calculator, when to stop drinking coffee before bed, caffeine sleep calculator, how long does caffeine last, caffeine cutoff time, coffee sleep impact, caffeine metabolism, caffeine and sleep">
+  <link rel="canonical" href="https://Max179.github.io/site-20260703-caffeine-half-life-calculator">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Caffeine Half-Life Calculator - When Can You Sleep After Coffee?">
+  <meta property="og:description" content="Free caffeine half-life calculator. See when caffeine from your last coffee, tea, or energy drink drops below sleep-safe levels so you can sleep soundly.">
+  <meta property="og:url" content="https://Max179.github.io/site-20260703-caffeine-half-life-calculator">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="shared/base.css">
+  <script src="shared/seo.js"></script>
+  <script src="shared/analytics.js"></script>
+  <script src="shared/ads.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1a1a1a; background: #f7f8fa; line-height: 1.6; }
+    .site-header { position: sticky; top: 0; z-index: 50; background: #ffffff; border-bottom: 1px solid #ebedf0; }
+    .nav-wrap { max-width: 1100px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.125rem; font-weight: 700; color: #1a1a1a; text-decoration: none; }
+    .nav-links { display: flex; gap: 16px; }
+    .nav-links a { color: #4a5568; text-decoration: none; font-size: 0.95rem; }
+    .nav-links a:hover { color: #2563eb; }
+    .ad-slot { display: none; width: 100%; background: #fff; border: 1px dashed #d1d5db; text-align: center; color: #9ca3af; font-size: 0.8rem; padding: 8px; }
+    #ad-incontent { margin: 24px auto; max-width: 700px; }
+    #ad-sidebar { position: fixed; right: 16px; top: 120px; width: 200px; max-width: 30vw; }
+    .container { max-width: 700px; margin: 0 auto; padding: 24px 16px; }
+    section { padding: 32px 16px; }
+    .hero { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #ffffff; text-align: center; padding: 48px 16px; }
+    .hero h1 { margin: 0 0 12px; font-size: 2rem; font-weight: 700; }
+    .hero p { margin: 0 auto 24px; max-width: 600px; font-size: 1rem; opacity: 0.95; }
+    .cta-button { display: inline-block; padding: 12px 28px; background: #ffffff; color: #2563eb; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: transform 0.15s ease; }
+    .cta-button:hover { transform: translateY(-1px); }
+    .calc-section { background: #ffffff; }
+    .calc-section h2 { margin: 0 0 16px; font-size: 1.25rem; text-align: center; }
+    .calc-form { display: grid; gap: 16px; margin-bottom: 16px; }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group label { margin-bottom: 6px; font-size: 0.9rem; font-weight: 600; color: #374151; }
+    .form-group input, .form-group select { padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; background: #fff; width: 100%; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+    .calc-button { width: 100%; padding: 14px; background: #2563eb; color: #ffffff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+    .calc-button:hover { background: #1d4ed8; }
+    .result-box { margin-top: 24px; padding: 24px; background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 8px; text-align: center; }
+    .result-label { font-size: 0.85rem; color: #6b7280; margin-bottom: 8px; }
+    #calc-result { font-size: 2rem; font-weight: 700; color: #1e3a8a; word-break: break-word; line-height: 1.3; }
+    .explanation-box { margin-top: 16px; padding: 16px 20px; background: #fafafa; border-left: 3px solid #2563eb; font-size: 0.95rem; color: #374151; line-height: 1.7; }
+    .explanation-box code { background: #eef; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+    .steps-section h2, .faq-section h2 { text-align: center; margin-bottom: 24px; font-size: 1.5rem; }
+    .steps-list { list-style: none; counter-reset: step; padding: 0; max-width: 700px; margin: 0 auto; }
+    .steps-list li { counter-increment: step; position: relative; padding: 12px 0 12px 48px; border-bottom: 1px solid #ebedf0; color: #374151; }
+    .steps-list li::before { content: counter(step); position: absolute; left: 0; top: 12px; width: 32px; height: 32px; background: #2563eb; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; }
+    details { max-width: 700px; margin: 12px auto; background: #fff; border: 1px solid #ebedf0; border-radius: 8px; padding: 0 16px; overflow: hidden; }
+    summary { padding: 14px 0; cursor: pointer; font-weight: 600; list-style: none; color: #1a1a1a; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: #2563eb; font-size: 1.25rem; line-height: 1.2; }
+    details[open] summary::after { content: "\2212"; }
+    details p { margin: 0 0 14px; color: #4a5568; line-height: 1.7; }
+    footer { background: #1a1a1a; color: #9ca3af; text-align: center; padding: 24px 16px; font-size: 0.85rem; }
+    footer a { color: #d1d5db; text-decoration: none; }
+    @media (min-width: 768px) { .hero h1 { font-size: 2.5rem; } .hero p { font-size: 1.125rem; } .container { padding: 32px 16px; } #calc-result { font-size: 2.25rem; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="/" class="logo">Caffeine Half-Life Calculator</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="#faq-section">FAQ</a>
+      </nav>
+    </div>
+  </header>
+  <div id="ad-header" class="ad-slot">ad header</div>
+  <section class="hero">
+    <h1>Caffeine Half-Life Calculator</h1>
+    <p>See exactly when the caffeine from your last coffee, tea, or energy drink drops below the level that disrupts sleep. Enter your intake and the time you drank it to get your safe-to-sleep time.</p>
+    <a href="#calc-section" class="cta-button" data-track="cta_hero_click">Calculate Now</a>
+  </section>
+  <section id="calc-section" class="calc-section">
+    <div class="container">
+      <h2>Online Calculator</h2>
+      <form id="calc-form" class="calc-form" onsubmit="return false;">
+        <div class="form-group">
+          <label for="drink-type">Drink type (auto-fills the amount)</label>
+          <select id="drink-type">
+            <option value="0">-- Select a drink --</option>
+            <option value="75">Espresso, 1 shot (~75 mg)</option>
+            <option value="95">Drip coffee, 8 oz (~95 mg)</option>
+            <option value="80">Latte / Cappuccino (~80 mg)</option>
+            <option value="165">Cold brew, 12 oz (~165 mg)</option>
+            <option value="47">Black tea, 8 oz (~47 mg)</option>
+            <option value="28">Green tea, 8 oz (~28 mg)</option>
+            <option value="80">Energy drink, 8 oz (~80 mg)</option>
+            <option value="40">Cola, 12 oz (~40 mg)</option>
+            <option value="200">Pre-workout, 1 scoop (~200 mg)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="caffeine-mg">Caffeine amount (mg)</label>
+          <input type="number" id="caffeine-mg" min="1" max="2000" step="1" value="95" inputmode="numeric">
+        </div>
+        <div class="form-group">
+          <label for="consumed-time">Time you finished drinking</label>
+          <input type="datetime-local" id="consumed-time">
+        </div>
+        <div class="form-group">
+          <label for="half-life">Half-life (hours) -- avg 5; ~3 for smokers; ~7-10 on oral contraceptives</label>
+          <input type="number" id="half-life" min="1" max="24" step="0.5" value="5">
+        </div>
+        <div class="form-group">
+          <label for="threshold">Sleep-safe threshold (mg) -- caffeine below this rarely disrupts sleep</label>
+          <input type="number" id="threshold" min="1" max="200" step="1" value="25">
+        </div>
+        <button type="button" class="calc-button" data-track="calc_execute_click" onclick="calculate()">Calculate</button>
+      </form>
+      <div class="result-box">
+        <div class="result-label">Earliest sleep time</div>
+        <div id="calc-result">--</div>
+      </div>
+      <div class="explanation-box">
+        <div id="calc-explanation">Enter your caffeine intake and the time you finished drinking above, then click Calculate. We will show the earliest time you can fall asleep without caffeine interfering, based on caffeine's average 5-hour half-life and a 25 mg sleep-safe threshold.</div>
+      </div>
+    </div>
+  </section>
+  <div id="ad-incontent" class="ad-slot">ad incontent</div>
+  <section class="steps-section">
+    <div class="container">
+      <h2>How to Use</h2>
+      <ol class="steps-list">
+        <li>Pick your drink from the list or type the caffeine amount in milligrams.</li>
+        <li>Set the date and time you finished your coffee, tea, or energy drink.</li>
+        <li>Adjust the half-life and sleep-safe threshold if your metabolism differs from average.</li>
+        <li>Click Calculate to see the earliest sleep time that will not be disrupted by caffeine.</li>
+      </ol>
+    </div>
+  </section>
+  <section id="faq-section" class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <details><summary>How long does caffeine stay in your system?</summary><p>Caffeine has an average half-life of about 5 hours in healthy adults. That means after 5 hours, half of the caffeine is still in your body. It usually takes 10-12 hours for caffeine to drop to a level that no longer affects sleep for most people.</p></details>
+      <details><summary>What is a "sleep-safe" caffeine threshold?</summary><p>Research suggests caffeine above roughly 25 mg at bedtime can measurably reduce sleep quality. This calculator uses 25 mg as the default threshold, but sensitive sleepers may want to lower it to 10 mg, and others can raise it to 50 mg.</p></details>
+      <details><summary>Why does my half-life differ from 5 hours?</summary><p>Smoking roughly halves caffeine's half-life to about 3 hours, while oral contraceptives and pregnancy can extend it to 7-11 hours. Genetics, age, and liver function also matter. Adjust the half-life field to match your situation.</p></details>
+      <details><summary>What time should I stop drinking coffee to sleep at 10 PM?</summary><p>For a typical 95 mg cup of drip coffee and a 5-hour half-life, caffeine stays above the 25 mg sleep-safe threshold for about 9.5 hours. So to sleep soundly at 10 PM, finish your last cup by around 12:30 PM. Use the calculator above for your exact number.</p></details>
+      <details><summary>Is decaf completely caffeine-free?</summary><p>No. Decaf coffee still contains about 2-15 mg of caffeine per 8 oz cup. It is usually well below the sleep-safe threshold, but very sensitive people drinking several cups late may still notice effects.</p></details>
+      <details><summary>Does this calculator give medical advice?</summary><p>No. This tool provides estimates based on average caffeine pharmacokinetics for educational purposes only. Individual responses vary widely. If you have ongoing sleep problems, consult a healthcare professional.</p></details>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2026 Caffeine Half-Life Calculator. All rights reserved.</p>
+  </footer>
+  <div id="ad-sidebar" class="ad-slot">ad sidebar</div>
+  <script>
+    function calculate() {
+      var mgInput = document.getElementById('caffeine-mg');
+      var timeInput = document.getElementById('consumed-time');
+      var halfLifeInput = document.getElementById('half-life');
+      var thresholdInput = document.getElementById('threshold');
+      var resultEl = document.getElementById('calc-result');
+      var explEl = document.getElementById('calc-explanation');
+      var mg = parseFloat(mgInput.value);
+      var timeStr = timeInput.value;
+      var halfLife = parseFloat(halfLifeInput.value);
+      var threshold = parseFloat(thresholdInput.value);
+      if (isNaN(mg) || mg <= 0) { resultEl.textContent = 'Please enter a valid caffeine amount.'; explEl.textContent = 'Enter a caffeine amount greater than 0 mg.'; return; }
+      if (!timeStr) { resultEl.textContent = 'Please choose the time you drank it.'; explEl.textContent = 'Select the date and time you finished your drink.'; return; }
+      if (isNaN(halfLife) || halfLife <= 0) { resultEl.textContent = 'Please enter a valid half-life.'; explEl.textContent = 'Half-life must be greater than 0 hours (average is about 5).'; return; }
+      if (isNaN(threshold) || threshold <= 0 || threshold >= mg) { resultEl.textContent = 'Please enter a valid sleep-safe threshold.'; explEl.textContent = 'The sleep-safe threshold should be greater than 0 and less than your intake (25 mg is common).'; return; }
+      var hoursToThreshold = halfLife * (Math.log(mg / threshold) / Math.log(2));
+      var consumedDate = new Date(timeStr);
+      if (isNaN(consumedDate.getTime())) {
+        var parts = timeStr.split(':');
+        if (parts.length >= 2) { consumedDate = new Date(); consumedDate.setHours(parseInt(parts[0], 10), parseInt(parts[1], 10), 0, 0); } else { resultEl.textContent = 'Invalid time format.'; return; }
+      }
+      var safeDate = new Date(consumedDate.getTime() + hoursToThreshold * 3600 * 1000);
+      function fmt(dt) { var h = dt.getHours(); var m = dt.getMinutes(); var ap = h >= 12 ? 'PM' : 'AM'; var h12 = h % 12; if (h12 === 0) h12 = 12; return h12 + ':' + (m < 10 ? '0' + m : m) + ' ' + ap; }
+      function fmtFull(dt) { var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']; var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return days[dt.getDay()] + ' ' + months[dt.getMonth()] + ' ' + dt.getDate() + ', ' + fmt(dt); }
+      var totalMin = Math.round(hoursToThreshold * 60);
+      var d = Math.floor(totalMin / (60*24)); var h = Math.floor((totalMin % (60*24)) / 60); var min = totalMin % 60;
+      var durParts = [];
+      if (d > 0) durParts.push(d + ' day' + (d > 1 ? 's' : ''));
+      if (h > 0) durParts.push(h + ' hr');
+      if (min > 0) durParts.push(min + ' min');
+      var durStr = durParts.join(' ') || '0 min';
+      var now = new Date();
+      var elapsedH = (now.getTime() - consumedDate.getTime()) / 3600000;
+      var remainingNow = mg * Math.pow(0.5, elapsedH / halfLife);
+      var remainingNowStr = (remainingNow > 0) ? Math.max(0, remainingNow).toFixed(1) + ' mg' : '0 mg';
+      resultEl.innerHTML = 'Safe to sleep at<br>' + fmtFull(safeDate) + '<br><span style="font-size:1rem;font-weight:500;color:#374151;">(' + durStr + ' after consuming)</span>';
+      explEl.innerHTML = '<strong>How this is calculated</strong><br>' +
+        'Caffeine leaves the body exponentially. The amount remaining after t hours is:<br>' +
+        '<code>C(t) = ' + mg + ' x (0.5)^(t / ' + halfLife + ')</code><br>' +
+        'Solving for when C(t) = ' + threshold + ' mg (the sleep-safe threshold):<br>' +
+        '<code>t = ' + halfLife + ' x log2(' + mg + ' / ' + threshold + ') = ' + hoursToThreshold.toFixed(2) + ' hours</code><br>' +
+        'You drank at ' + fmt(consumedDate) + ', so add ' + durStr + ' to get an earliest sleep time of ' + fmtFull(safeDate) + '.<br>' +
+        'Right now you still have roughly <strong>' + remainingNowStr + '</strong> of caffeine active in your body.';
+    }
+    (function setupForm(){
+      var drinkSelect = document.getElementById('drink-type');
+      var mgInput = document.getElementById('caffeine-mg');
+      function onDrinkChange(){ var v = parseFloat(drinkSelect.value); if (v > 0) { mgInput.value = v; } }
+      if (drinkSelect) drinkSelect.addEventListener('change', onDrinkChange);
+      var timeInput = document.getElementById('consumed-time');
+      if (timeInput && !timeInput.value) {
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        timeInput.value = now.toISOString().slice(0,16);
+      }
+    })();
+  </script>
+  <script>
+    var DEFAULT_CONFIG = { siteName: 'Caffeine Half-Life Calculator', gaId: '', ads: { enabled: false } };
+    function loadConfig(cb) {
+      fetch('shared/config.json', { cache: 'no-store' })
+        .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
+        .then(function (json) { cb(Object.assign({}, DEFAULT_CONFIG, json)); })
+        .catch(function () { cb(DEFAULT_CONFIG); });
+    }
+    function bindCtaScroll() {
+      var cta = document.querySelector('[data-track="cta_hero_click"]');
+      var target = document.getElementById('calc-section');
+      if (cta && target) { cta.addEventListener('click', function (e) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); }
+    }
+    function init() {
+      bindCtaScroll();
+      loadConfig(function (config) {
+        if (window.SiteSEO && typeof SiteSEO.setupSEO === 'function') {
+          SiteSEO.setupSEO({ title: 'Caffeine Half-Life Calculator - When Can You Sleep After Coffee?', description: 'Free caffeine half-life calculator. See when caffeine from your last coffee, tea, or energy drink drops below sleep-safe levels so you can sleep soundly.', keywords: 'caffeine half life calculator, when to stop drinking coffee before bed, caffeine sleep calculator, how long does caffeine last, caffeine cutoff time, coffee sleep impact, caffeine metabolism, caffeine and sleep', url: 'https://Max179.github.io/site-20260703-caffeine-half-life-calculator', type: 'calculator' });
+        }
+        if (window.SiteAnalytics && typeof SiteAnalytics.initAnalytics === 'function') { SiteAnalytics.initAnalytics(config.gaId); }
+        if (window.SiteAds && typeof SiteAds.initAds === 'function') { SiteAds.initAds(config); }
+      });
+    }
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
+  </script>
+</body>
+</html>
