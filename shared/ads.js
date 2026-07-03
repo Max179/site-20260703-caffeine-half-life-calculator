@@ -1,24 +1,27 @@
 /**
- * SiteAds - 微网站广告共享模块
- * 提供 AdSense 广告位创建与展示能力
- * 被工具站 / 资讯站 / 计算站三类模板通过相对路径 ../shared/ads.js 引用
+ * SiteAds - Shared ads module for micro-sites
+ * Provides AdSense ad slot creation and display
  */
 (function (global) {
   'use strict';
+
   var state = {
     adsenseId: '',
     positions: ['header', 'incontent', 'sidebar'],
     scriptLoaded: false,
     initialized: false
   };
+
   var AD_SLOT_MAP = {
     'header': 'ad-header',
     'incontent': 'ad-incontent',
     'sidebar': 'ad-sidebar'
   };
+
   function isValidAdsenseId(id) {
     return !!id && id !== 'YOUR_ADSENSE_ID' && id.length > 0;
   }
+
   function createAdSlot(slotId) {
     var existing = document.getElementById(slotId);
     if (existing) {
@@ -32,26 +35,32 @@
     document.body.appendChild(div);
     return div;
   }
+
   function initAds(config) {
     if (!config) {
-      console.warn('[SiteAds] initAds 缺少 config 参数');
+      console.warn('[SiteAds] initAds missing config');
       return;
     }
+
     state.adsenseId = config.adsenseId || '';
     if (Array.isArray(config.positions) && config.positions.length > 0) {
       state.positions = config.positions;
     }
+
     state.positions.forEach(function (pos) {
       var slotId = AD_SLOT_MAP[pos];
       if (slotId) {
         createAdSlot(slotId);
       }
     });
+
     state.initialized = true;
+
     if (!isValidAdsenseId(state.adsenseId)) {
-      console.info('[SiteAds] 未提供有效 adsenseId,仅创建占位广告位(开发环境正常行为)');
+      console.info('[SiteAds] No valid adsenseId, only placeholder slots created');
     }
   }
+
   function loadAdsenseScript() {
     if (state.scriptLoaded || !isValidAdsenseId(state.adsenseId)) {
       return;
@@ -63,6 +72,7 @@
     document.head.appendChild(script);
     state.scriptLoaded = true;
   }
+
   function injectIns(slotId) {
     var container = document.getElementById(slotId);
     if (!container) {
@@ -79,20 +89,26 @@
     ins.setAttribute('data-ad-format', 'auto');
     ins.setAttribute('data-full-width-responsive', 'true');
     container.appendChild(ins);
+
     try {
       (global.adsbygoogle = global.adsbygoogle || []).push({});
     } catch (e) {
+      // ignore render failures
     }
   }
+
   function showAds() {
     if (!state.initialized) {
-      console.warn('[SiteAds] 请先调用 initAds 进行初始化');
+      console.warn('[SiteAds] Call initAds first');
       return;
     }
+
     if (!isValidAdsenseId(state.adsenseId)) {
       return;
     }
+
     loadAdsenseScript();
+
     state.positions.forEach(function (pos) {
       var slotId = AD_SLOT_MAP[pos];
       if (!slotId) {
@@ -105,6 +121,7 @@
       }
     });
   }
+
   global.SiteAds = {
     initAds: initAds,
     showAds: showAds
