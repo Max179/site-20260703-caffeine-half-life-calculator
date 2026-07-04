@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "@heroui/react/styles";
+
+:root {
+  --color-primary: #2563eb;
+  --color-bg: #f7f8fa;
+  --color-card: #ffffff;
+  --color-text: #1a1a1a;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}

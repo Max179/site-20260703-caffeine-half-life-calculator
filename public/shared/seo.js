@@ -1,10 +1,17 @@
 /**
- * SiteSEO - Shared SEO module for micro-sites
- * Provides SEO meta setup, JSON-LD structured data injection, and sitemap generation
+ * SiteSEO - 微网站 SEO 共享模块
+ * 提供页面 SEO 元信息设置、JSON-LD 结构化数据注入、Sitemap 生成能力
+ * 被工具站 / 资讯站 / 计算站三类模板通过相对路径 ../shared/seo.js 引用
  */
 (function (global) {
   'use strict';
 
+  /**
+   * 创建或更新一个 meta 标签
+   * @param {string} selector - meta 选择器,如 'meta[name="description"]'
+   * @param {Object} attrs - 属性键值对,如 { name: 'description', content: '...' }
+   * @returns {HTMLMetaElement} 创建或更新后的 meta 元素
+   */
   function upsertMeta(selector, attrs) {
     var el = document.querySelector(selector);
     if (!el) {
@@ -17,7 +24,13 @@
     return el;
   }
 
+  /**
+   * 注入或替换 JSON-LD 结构化数据脚本
+   * @param {Object} jsonLdObj - 结构化数据对象
+   * @param {string} dataKey - 用于标识的 data 属性值,便于重复调用时替换
+   */
   function injectJsonLd(jsonLdObj, dataKey) {
+    // 移除旧的同类结构化数据
     var old = document.querySelector('script[type="application/ld+json"][data-siteseo="' + dataKey + '"]');
     if (old) {
       old.parentNode.removeChild(old);
@@ -29,12 +42,18 @@
     document.head.appendChild(script);
   }
 
+  /**
+   * 根据 type 生成对应的 JSON-LD 结构化数据
+   * @param {Object} config - SEO 配置
+   * @returns {Object} JSON-LD 对象
+   */
   function buildJsonLd(config) {
     var type = config.type;
     var url = config.url || (typeof location !== 'undefined' ? location.href : '');
     var title = config.title || '';
     var description = config.description || '';
 
+    // 工具站 / 计算站使用 WebApplication 类型
     if (type === 'tool' || type === 'calculator') {
       return {
         '@context': 'https://schema.org',
@@ -48,6 +67,7 @@
       };
     }
 
+    // 资讯站使用 CollectionPage 类型(包含 Article 子项可选)
     if (type === 'info') {
       return {
         '@context': 'https://schema.org',
@@ -58,6 +78,7 @@
       };
     }
 
+    // 默认回退为 WebPage
     return {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
@@ -67,9 +88,18 @@
     };
   }
 
+  /**
+   * 设置页面 SEO 信息
+   * @param {Object} config - SEO 配置
+   * @param {string} config.title - 页面标题
+   * @param {string} config.description - 页面描述
+   * @param {string[]} config.keywords - 关键词数组
+   * @param {string} config.url - 页面规范 URL
+   * @param {string} config.type - 站点类型: 'tool' | 'info' | 'calculator'
+   */
   function setupSEO(config) {
     if (!config) {
-      console.warn('[SiteSEO] setupSEO missing config');
+      console.warn('[SiteSEO] setupSEO 缺少 config 参数');
       return;
     }
 
@@ -78,10 +108,12 @@
     var keywords = Array.isArray(config.keywords) ? config.keywords.join(',') : (config.keywords || '');
     var url = config.url || (typeof location !== 'undefined' ? location.href : '');
 
+    // 设置 <title>
     if (title) {
       document.title = title;
     }
 
+    // 设置基础 meta
     if (description) {
       upsertMeta('meta[name="description"]', { name: 'description', content: description });
     }
@@ -89,6 +121,7 @@
       upsertMeta('meta[name="keywords"]', { name: 'keywords', content: keywords });
     }
 
+    // 设置 Open Graph 系列标签
     upsertMeta('meta[property="og:title"]', { property: 'og:title', content: title });
     upsertMeta('meta[property="og:description"]', { property: 'og:description', content: description });
     upsertMeta('meta[property="og:url"]', { property: 'og:url', content: url });
@@ -100,14 +133,20 @@
       upsertMeta('meta[property="og:image"]', { property: 'og:image', content: config.image });
     }
 
+    // 注入 JSON-LD 结构化数据
     try {
       var jsonLd = buildJsonLd(config);
       injectJsonLd(jsonLd, 'main');
     } catch (e) {
-      console.warn('[SiteSEO] JSON-LD injection failed:', e);
+      console.warn('[SiteSEO] JSON-LD 注入失败:', e);
     }
   }
 
+  /**
+   * 生成符合 sitemap 协议的 XML 字符串
+   * @param {Array<string|Object>} urls - URL 数组,可为字符串或 { loc, lastmod, changefreq, priority } 对象
+   * @returns {string} sitemap XML 字符串
+   */
   function generateSitemap(urls) {
     var header = '<?xml version="1.0" encoding="UTF-8"?>\n' +
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
@@ -117,6 +156,7 @@
       return header + footer;
     }
 
+    // 转义 XML 特殊字符
     function escapeXml(str) {
       return String(str)
         .replace(/&/g, '&amp;')
@@ -146,6 +186,7 @@
     return header + body + footer;
   }
 
+  // 挂载到全局对象
   global.SiteSEO = {
     setupSEO: setupSEO,
     generateSitemap: generateSitemap
